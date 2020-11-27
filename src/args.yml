@@ -1,0 +1,21 @@
+name: crate_name
+version: create_version
+author: crate_authors
+about: crate_description
+
+args:
+    - threads:
+        long: threads
+        takes_value: true
+        default_value: '30'
+        help: Number of simultaneous URLs to process.
+    - timeout:
+        long: timeout
+        takes_value: true
+        default_value: '5'
+        help: Seconds to wait before giving up a URL.
+    - quiet:
+        short: q
+        long: quiet
+        takes_value: false
+        help: Only print URLs which cannot be reached.

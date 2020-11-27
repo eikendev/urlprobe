@@ -1,0 +1,23 @@
+[package]
+name = "urlprobe"
+version = "0.0.1"
+authors = ["eikendev"]
+edition = "2018"
+description = "A tool for probing URLs for their status code"
+homepage = "https://github.com/eikendev/urlprobe"
+repository = "https://github.com/eikendev/urlprobe.git"
+readme = "README.md"
+license = "ISC"
+
+[dependencies]
+futures = ">=0.3.8"
+http = ">=0.2.1"
+reqwest = ">=0.10.9"
+
+[dependencies.clap]
+version = ">=2.31"
+features = ["yaml"]
+
+[dependencies.tokio]
+version = "=0.2.23" # reqwest does not support version 3 yet.
+features = ["macros"]
