@@ -4,6 +4,11 @@ author: crate_authors
 about: crate_description
 
 args:
+    - quiet:
+        short: q
+        long: quiet
+        takes_value: false
+        help: Only print URLs which cannot be reached.
     - threads:
         long: threads
         takes_value: true
@@ -14,8 +19,8 @@ args:
         takes_value: true
         default_value: '5'
         help: Seconds to wait before giving up a URL.
-    - quiet:
-        short: q
-        long: quiet
-        takes_value: false
-        help: Only print URLs which cannot be reached.
+    - useragent:
+        long: user-agent
+        takes_value: true
+        default_value: 'reqwest'
+        help: User-Agent header to be used for the requests.

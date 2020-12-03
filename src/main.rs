@@ -53,9 +53,10 @@ async fn process_url(url: String, client: &Client, quiet: bool) -> bool {
 }
 
 #[tokio::main]
-async fn process_urls(threads: usize, timeout: u64, quiet: bool) -> bool {
+async fn process_urls(quiet: bool, threads: usize, timeout: u64, useragent: &str) -> bool {
     let client = reqwest::Client::builder()
         .timeout(Duration::from_secs(timeout))
+        .user_agent(useragent)
         .build()
         .unwrap();
 
@@ -82,11 +83,12 @@ fn main() {
         .about(crate_description!())
         .get_matches();
 
+    let quiet = matches.is_present("quiet");
     let threads = value_t_or_exit!(matches.value_of("threads"), usize);
     let timeout = value_t_or_exit!(matches.value_of("timeout"), u64);
-    let quiet = matches.is_present("quiet");
+    let useragent = value_t_or_exit!(matches.value_of("useragent"), String);
 
-    let success = process_urls(threads, timeout, quiet);
+    let success = process_urls(quiet, threads, timeout, &useragent);
 
     if !success {
         exit(1);
