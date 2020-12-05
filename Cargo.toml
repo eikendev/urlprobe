@@ -1,6 +1,6 @@
 [package]
 name = "urlprobe"
-version = "0.0.1"
+version = "0.2.0"
 authors = ["eikendev"]
 edition = "2018"
 description = "A tool for probing URLs for their status code"
