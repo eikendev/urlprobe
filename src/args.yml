@@ -5,22 +5,26 @@ about: crate_description
 
 args:
     - quiet:
-        short: q
-        long: quiet
-        takes_value: false
         help: Only print URLs which cannot be reached.
+        long: quiet
+        short: q
+        takes_value: false
     - threads:
-        long: threads
-        takes_value: true
         default_value: '30'
         help: Number of simultaneous URLs to process.
-    - timeout:
-        long: timeout
+        long: threads
         takes_value: true
+    - timeout:
         default_value: '5'
         help: Seconds to wait before giving up a URL.
-    - useragent:
-        long: user-agent
+        long: timeout
         takes_value: true
+    - useragent:
         default_value: 'reqwest'
         help: User-Agent header to be used for the requests.
+        long: user-agent
+        takes_value: true
+    - FILE:
+        default_value: '-'
+        help: The input file to use, use '-' to read from stdin
+        index: 1
