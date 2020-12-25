@@ -9,3 +9,11 @@ You feed it a list of URLs and it will tell you which of them are reachable.
 ```bash
 urlprobe < urls.txt
 ```
+
+## Installation
+
+### From crates.io
+
+```bash
+cargo install urlprobe
+```
