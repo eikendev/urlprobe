@@ -1,3 +1,4 @@
+[![Build status](https://img.shields.io/github/workflow/status/eikendev/urlprobe/Main)](https://github.com/eikendev/urlprobe/actions)
 [![License](https://img.shields.io/crates/l/urlprobe)](https://crates.io/crates/urlprobe)
 [![Version](https://img.shields.io/crates/v/urlprobe)](https://crates.io/crates/urlprobe)
 [![Downloads](https://img.shields.io/crates/d/urlprobe)](https://crates.io/crates/urlprobe)
