@@ -12,12 +12,12 @@ license = "ISC"
 [dependencies]
 futures = ">=0.3.8"
 http = ">=0.2.1"
-reqwest = ">=0.10.9"
+reqwest = ">=0.11"
 
 [dependencies.clap]
 version = ">=2.31"
 features = ["yaml"]
 
 [dependencies.tokio]
-version = "=0.2.23" # reqwest does not support version 3 yet.
-features = ["macros"]
+version = "1"
+features = ["rt-multi-thread", "macros"]
