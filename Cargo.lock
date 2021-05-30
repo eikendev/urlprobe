@@ -1164,7 +1164,7 @@ dependencies = [
 
 [[package]]
 name = "urlprobe"
-version = "0.2.2"
+version = "0.2.3"
 dependencies = [
  "clap",
  "futures",
