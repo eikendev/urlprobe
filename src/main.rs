@@ -9,15 +9,13 @@ use std::process::exit;
 use std::time::Duration;
 
 fn push_lines(reader: &mut dyn BufRead, sendto: &mut Sender<String>) {
-    for line in reader.lines() {
-        if let Ok(line) = line {
-            loop {
-                let status = sendto.try_send(line.to_owned());
+    for line in reader.lines().flatten() {
+        loop {
+            let status = sendto.try_send(line.to_owned());
 
-                match status {
-                    Err(e) if e.is_full() => continue,
-                    _ => break,
-                }
+            match status {
+                Err(e) if e.is_full() => continue,
+                _ => break,
             }
         }
     }
@@ -87,6 +85,8 @@ async fn process_urls(quiet: bool, threads: usize, timeout: u64, useragent: &str
 }
 
 fn main() {
+    human_panic::setup_panic!();
+
     let args_yaml = load_yaml!("args.yml");
 
     let matches = clap::App::from_yaml(args_yaml)
