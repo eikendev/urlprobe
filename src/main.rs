@@ -1,8 +1,10 @@
-use clap::{crate_authors, crate_description, crate_name, crate_version, load_yaml, value_t_or_exit};
+mod settings;
+
 use futures::channel::mpsc::{channel, Sender};
 use futures::{Stream, StreamExt};
 use http::StatusCode;
 use reqwest::Client;
+use settings::Settings;
 use std::fs::File;
 use std::io::BufRead;
 use std::process::exit;
@@ -64,20 +66,21 @@ async fn process_url(url: String, client: &Client, quiet: bool) -> bool {
 }
 
 #[tokio::main]
-async fn process_urls(quiet: bool, threads: usize, timeout: u64, useragent: &str, file: Option<File>) -> bool {
+async fn process_urls(s: settings::Settings) -> bool {
     let client = reqwest::Client::builder()
-        .timeout(Duration::from_secs(timeout))
-        .user_agent(useragent)
+        .timeout(Duration::from_secs(s.timeout))
+        .user_agent(s.useragent)
         .build()
         .unwrap();
 
-    let statuses = get_lines(file, threads)
+    let quiet = s.quiet;
+    let statuses = get_lines(s.input, s.threads)
         .map(|url| {
             let client = &client;
 
             async move { process_url(url, client, quiet).await }
         })
-        .buffer_unordered(threads);
+        .buffer_unordered(s.threads);
 
     let success: bool = statuses.fold(true, |acc, s| async move { acc && s }).await;
 
@@ -87,33 +90,9 @@ async fn process_urls(quiet: bool, threads: usize, timeout: u64, useragent: &str
 fn main() {
     human_panic::setup_panic!();
 
-    let args_yaml = load_yaml!("args.yml");
+    let settings: Settings = argh::from_env();
 
-    let matches = clap::App::from_yaml(args_yaml)
-        .name(crate_name!())
-        .version(crate_version!())
-        .author(crate_authors!())
-        .about(crate_description!())
-        .get_matches();
-
-    let quiet = matches.is_present("quiet");
-    let threads = value_t_or_exit!(matches.value_of("threads"), usize);
-    let timeout = value_t_or_exit!(matches.value_of("timeout"), u64);
-    let useragent = value_t_or_exit!(matches.value_of("useragent"), String);
-
-    let file = value_t_or_exit!(matches.value_of("FILE"), String);
-    let file: Option<File> = match file {
-        _ if file == "-" => None,
-        _ => match File::open(file) {
-            Ok(f) => Some(f),
-            Err(e) => {
-                eprintln!("Cannot read specified file: {}", e);
-                exit(1)
-            }
-        },
-    };
-
-    let success = process_urls(quiet, threads, timeout, &useragent, file);
+    let success = process_urls(settings);
 
     if !success {
         exit(1);
