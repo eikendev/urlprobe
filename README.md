@@ -7,7 +7,7 @@
 </div>
 
 <p align="center">
-	<a href="https://github.com/eikendev/urlprobe/actions"><img alt="Build status" src="https://img.shields.io/github/workflow/status/eikendev/urlprobe/Main"/></a>&nbsp;
+	<a href="https://github.com/eikendev/urlprobe/actions"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/eikendev/urlprobe/main.yml?branch=main"/></a>&nbsp;
 	<a href="https://github.com/eikendev/urlprobe/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/eikendev/urlprobe"/></a>&nbsp;
 	<a href="https://crates.io/crates/urlprobe"><img alt="Version" src="https://img.shields.io/crates/v/urlprobe"/></a>&nbsp;
 	<a href="https://crates.io/crates/urlprobe"><img alt="Downloads" src="https://img.shields.io/crates/d/urlprobe"/></a>&nbsp;
