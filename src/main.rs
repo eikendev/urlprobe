@@ -57,7 +57,7 @@ async fn process_url(url: String, client: &Client, quiet: bool) -> bool {
             }
         },
         Err(e) => {
-            eprintln!("ERR - {} ({})", url, e);
+            eprintln!("ERR - {url} ({e})");
             return false;
         }
     }
