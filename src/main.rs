@@ -2,8 +2,7 @@ mod settings;
 
 use futures::channel::mpsc::{channel, Sender};
 use futures::{Stream, StreamExt};
-use http::StatusCode;
-use reqwest::Client;
+use reqwest::{Client, StatusCode};
 use settings::Settings;
 use std::fs::File;
 use std::io::BufRead;
