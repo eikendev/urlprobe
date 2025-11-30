@@ -1,6 +1,6 @@
 mod settings;
 
-use futures::channel::mpsc::{channel, Sender};
+use futures::channel::mpsc::{Sender, channel};
 use futures::{Stream, StreamExt};
 use reqwest::{Client, StatusCode};
 use settings::Settings;
@@ -10,7 +10,7 @@ use std::process::exit;
 use std::time::Duration;
 
 fn push_lines(reader: &mut dyn BufRead, sendto: &mut Sender<String>) {
-    for line in reader.lines().flatten() {
+    for line in reader.lines().map_while(Result::ok) {
         loop {
             let status = sendto.try_send(line.to_owned());
 

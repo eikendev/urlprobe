@@ -2,7 +2,7 @@
 name = "urlprobe"
 version = "0.4.0"
 authors = ["eikendev"]
-edition = "2018"
+edition = "2024"
 description = "A tool for probing URLs for their status code"
 homepage = "https://github.com/eikendev/urlprobe"
 repository = "https://github.com/eikendev/urlprobe.git"
@@ -13,7 +13,7 @@ license = "ISC"
 futures = ">=0.3.8"
 http = ">=0.2.1"
 reqwest = ">=0.11"
-human-panic = "1.0.3"
+human-panic = "2.0.4"
 argh = "0.1.4"
 anyhow = "1.0.41"
 
