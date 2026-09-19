@@ -5,7 +5,7 @@ authors = ["eikendev"]
 edition = "2024"
 description = "A tool for probing URLs for their status code"
 homepage = "https://github.com/eikendev/urlprobe"
-repository = "https://github.com/eikendev/urlprobe.git"
+repository = "https://github.com/eikendev/urlprobe"
 readme = "README.md"
 license = "ISC"
 
@@ -20,3 +20,13 @@ anyhow = "1.0.41"
 [dependencies.tokio]
 version = "1"
 features = ["rt-multi-thread", "macros"]
+
+# Matches the assets uploaded by release.yaml.
+[package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }{ archive-suffix }"
+pkg-fmt = "tgz"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+strip = "symbols"

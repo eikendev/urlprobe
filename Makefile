@@ -13,4 +13,4 @@ setup:
 
 .PHONY: publish
 publish:
-	cargo publish
+	cargo publish --locked
