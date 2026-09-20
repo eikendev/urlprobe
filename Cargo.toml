@@ -10,12 +10,11 @@ readme = "README.md"
 license = "ISC"
 
 [dependencies]
-futures = ">=0.3.8"
-http = ">=0.2.1"
-reqwest = { version = ">=0.11", default-features = false, features = ["rustls-tls"] }
+anyhow = "1.0.100"
+argh = "0.1.13"
+futures = "0.3.31"
 human-panic = "2.0.4"
-argh = "0.1.4"
-anyhow = "1.0.41"
+reqwest = { version = "0.13", default-features = false, features = ["rustls"] }
 
 [dependencies.tokio]
 version = "1"
