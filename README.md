@@ -15,8 +15,22 @@
 
 ## 🚀&nbsp;Installation
 
+Install a prebuilt binary with [cargo-binstall](https://github.com/cargo-bins/cargo-binstall):
+
+```bash
+cargo binstall urlprobe
+```
+
+Or build from source:
+
 ```bash
 cargo install urlprobe
+```
+
+Linux binaries for `x86_64` and `aarch64`, both glibc and static musl, are attached to every [release](https://github.com/eikendev/urlprobe/releases), each with a `.sha256` checksum and a verifiable build provenance:
+
+```bash
+gh attestation verify urlprobe-x86_64-unknown-linux-musl.tar.gz --repo eikendev/urlprobe
 ```
 
 ## 📄&nbsp;Usage
